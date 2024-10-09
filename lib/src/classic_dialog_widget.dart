@@ -77,11 +77,7 @@ class ClassicGeneralDialogWidget extends StatelessWidget {
                     onPressed: onNegativeClick,
                     child: Text(
                       negativeText ?? 'cancel',
-                      style: negativeTextStyle ??
-                          TextStyle(
-                              color: Theme.of(context).textTheme.caption!.color,
-                              fontSize:
-                                  Theme.of(context).textTheme.button!.fontSize),
+                      style: negativeTextStyle ?? TextStyle(color: Colors.white, fontSize: Theme.of(context).textTheme.titleMedium!.fontSize),
                     ),
                   )
                 : Container(),
@@ -92,10 +88,7 @@ class ClassicGeneralDialogWidget extends StatelessWidget {
                       foregroundColor: MaterialStateProperty.resolveWith<Color>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.pressed)) {
-                            return Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.5);
+                            return Theme.of(context).colorScheme.primary.withOpacity(0.5);
                           }
                           return Theme.of(context).splashColor;
                         },
@@ -104,10 +97,7 @@ class ClassicGeneralDialogWidget extends StatelessWidget {
                     child: Text(
                       positiveText ?? 'confirm',
                       style: positiveTextStyle ??
-                          TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize:
-                                  Theme.of(context).textTheme.button!.fontSize),
+                          TextStyle(color: Theme.of(context).primaryColor, fontSize: Theme.of(context).textTheme.titleMedium!.fontSize),
                     ),
                   )
                 : Container(),
@@ -214,8 +204,7 @@ class ClassicListDialogWidgetState<T> extends State<ClassicListDialogWidget> {
   void initState() {
     super.initState();
     valueList = List.generate(widget.dataList.length, (index) {
-      if (widget.selectedIndexes != null &&
-          widget.selectedIndexes!.contains(index)) {
+      if (widget.selectedIndexes != null && widget.selectedIndexes!.contains(index)) {
         return true;
       }
       return false;
@@ -249,8 +238,7 @@ class ClassicListDialogWidgetState<T> extends State<ClassicListDialogWidget> {
                   widget.dataList[index].toString(),
                   style: Theme.of(context).dialogTheme.contentTextStyle,
                 ),
-                activeColor:
-                    widget.activeColor ?? Theme.of(context).primaryColor,
+                activeColor: widget.activeColor ?? Theme.of(context).primaryColor,
                 value: index,
                 groupValue: selectedIndex,
                 onChanged: (value) {
@@ -273,8 +261,7 @@ class ClassicListDialogWidgetState<T> extends State<ClassicListDialogWidget> {
                     valueList[index] = value!;
                   });
                 },
-                activeColor:
-                    widget.activeColor ?? Theme.of(context).primaryColor,
+                activeColor: widget.activeColor ?? Theme.of(context).primaryColor,
               );
             default:
               return ListTile(
@@ -315,9 +302,7 @@ class ClassicListDialogWidgetState<T> extends State<ClassicListDialogWidget> {
                 onPressed: widget.onNegativeClick,
                 child: Text(
                   widget.negativeText ?? 'cancel',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.caption!.color,
-                      fontSize: Theme.of(context).textTheme.button!.fontSize),
+                  style: TextStyle(color: Colors.white, fontSize: Theme.of(context).textTheme.titleMedium!.fontSize),
                 ),
               ),
             TextButton(
@@ -349,10 +334,7 @@ class ClassicListDialogWidgetState<T> extends State<ClassicListDialogWidget> {
                 foregroundColor: MaterialStateProperty.resolveWith<Color>(
                   (Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed)) {
-                      return Theme.of(context)
-                          .colorScheme
-                          .primary
-                          .withOpacity(0.5);
+                      return Theme.of(context).colorScheme.primary.withOpacity(0.5);
                     }
                     return Theme.of(context).splashColor;
                   },
@@ -360,9 +342,7 @@ class ClassicListDialogWidgetState<T> extends State<ClassicListDialogWidget> {
               ),
               child: Text(
                 widget.positiveText ?? 'confirm',
-                style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: Theme.of(context).textTheme.button!.fontSize),
+                style: TextStyle(color: Theme.of(context).primaryColor, fontSize: Theme.of(context).textTheme.titleMedium!.fontSize),
               ),
             ),
           ],

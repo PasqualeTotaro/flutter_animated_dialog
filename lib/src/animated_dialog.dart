@@ -85,8 +85,7 @@ Future<T?> showAnimatedDialog<T extends Object?>({
   isShowing = true;
   return showGeneralDialog(
     context: context,
-    pageBuilder: (BuildContext buildContext, Animation<double> animation,
-        Animation<double> secondaryAnimation) {
+    pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
       final Widget pageChild = Builder(builder: builder);
       return SafeArea(
         top: false,
@@ -99,8 +98,7 @@ Future<T?> showAnimatedDialog<T extends Object?>({
     barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
     barrierColor: barrierColor ?? Colors.black54,
     transitionDuration: duration ?? const Duration(milliseconds: 400),
-    transitionBuilder: (BuildContext context, Animation<double> animation,
-        Animation<double> secondaryAnimation, Widget child) {
+    transitionBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
       switch (animationType) {
         case DialogTransitionType.fade:
           return FadeTransition(opacity: animation, child: child);
@@ -229,23 +227,20 @@ Future<T?> showAnimatedDialog<T extends Object?>({
             ),
             child: CustomRotationTransition(
               alignment: alignment,
-              turns: Tween<double>(begin: 1, end: 2).animate(CurvedAnimation(
-                  parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
+              turns: Tween<double>(begin: 1, end: 2).animate(CurvedAnimation(parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
               child: child,
             ),
           );
         case DialogTransitionType.rotate:
           return CustomRotationTransition(
             alignment: alignment,
-            turns: Tween<double>(begin: 1, end: 2).animate(CurvedAnimation(
-                parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
+            turns: Tween<double>(begin: 1, end: 2).animate(CurvedAnimation(parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
             child: child,
           );
         case DialogTransitionType.fadeRotate:
           return CustomRotationTransition(
             alignment: alignment,
-            turns: Tween<double>(begin: 1, end: 2).animate(CurvedAnimation(
-                parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
+            turns: Tween<double>(begin: 1, end: 2).animate(CurvedAnimation(parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
             child: FadeTransition(
               opacity: CurvedAnimation(
                 parent: animation,
@@ -257,15 +252,11 @@ Future<T?> showAnimatedDialog<T extends Object?>({
         case DialogTransitionType.rotate3D:
           return Rotation3DTransition(
             alignment: alignment,
-            turns: Tween<double>(begin: math.pi, end: 2.0 * math.pi).animate(
-                CurvedAnimation(
-                    parent: animation,
-                    curve: Interval(0.0, 1.0, curve: curve))),
+            turns: Tween<double>(begin: math.pi, end: 2.0 * math.pi)
+                .animate(CurvedAnimation(parent: animation, curve: Interval(0.0, 1.0, curve: curve))),
             child: FadeTransition(
-              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
-                  CurvedAnimation(
-                      parent: animation,
-                      curve: Interval(0.5, 1.0, curve: Curves.elasticOut))),
+              opacity: Tween<double>(begin: 0.0, end: 1.0)
+                  .animate(CurvedAnimation(parent: animation, curve: Interval(0.5, 1.0, curve: Curves.elasticOut))),
               child: child,
             ),
           );
@@ -440,12 +431,9 @@ class CustomDialogWidget extends StatelessWidget {
 
     if (title != null) {
       children.add(Padding(
-        padding: titlePadding ??
-            EdgeInsets.fromLTRB(24.0, 24.0, 24.0, content == null ? 20.0 : 0.0),
+        padding: titlePadding ?? EdgeInsets.fromLTRB(24.0, 24.0, 24.0, content == null ? 20.0 : 0.0),
         child: DefaultTextStyle(
-          style: (titleTextStyle ??
-              dialogTheme.titleTextStyle ??
-              theme.textTheme.headline6)!,
+          style: (titleTextStyle ?? dialogTheme.titleTextStyle ?? theme.textTheme.headlineMedium)!,
           child: Semantics(
             child: title,
             namesRoute: true,
@@ -460,19 +448,16 @@ class CustomDialogWidget extends StatelessWidget {
           break;
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
-          label = semanticLabel ??
-              MaterialLocalizations.of(context).alertDialogLabel;
+          label = semanticLabel ?? MaterialLocalizations.of(context).alertDialogLabel;
           break;
         case TargetPlatform.linux:
-          label = semanticLabel ??
-              MaterialLocalizations.of(context).alertDialogLabel;
+          label = semanticLabel ?? MaterialLocalizations.of(context).alertDialogLabel;
           break;
         case TargetPlatform.macOS:
           label = semanticLabel;
           break;
         case TargetPlatform.windows:
-          label = semanticLabel ??
-              MaterialLocalizations.of(context).alertDialogLabel;
+          label = semanticLabel ?? MaterialLocalizations.of(context).alertDialogLabel;
           break;
       }
     }
@@ -483,9 +468,7 @@ class CustomDialogWidget extends StatelessWidget {
           child: Padding(
             padding: contentPadding!,
             child: DefaultTextStyle(
-              style: (contentTextStyle ??
-                  dialogTheme.contentTextStyle ??
-                  theme.textTheme.subtitle1)!,
+              style: (contentTextStyle ?? dialogTheme.contentTextStyle ?? theme.textTheme.titleSmall)!,
               child: content!,
             ),
           ),
@@ -530,9 +513,7 @@ class CustomDialogWidget extends StatelessWidget {
     );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light.copyWith(
-            statusBarIconBrightness: Brightness.light,
-            statusBarColor: Colors.transparent),
+        value: SystemUiOverlayStyle.light.copyWith(statusBarIconBrightness: Brightness.light, statusBarColor: Colors.transparent),
         child: dialogChild);
   }
 }
@@ -613,17 +594,14 @@ class CustomDialog extends StatelessWidget {
   final Widget? child;
 
   // TODO(johnsonmh): Update default dialog border radius to 4.0 to match material spec.
-  static const RoundedRectangleBorder _defaultDialogShape =
-      RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(2.0)));
+  static const RoundedRectangleBorder _defaultDialogShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2.0)));
   static const double _defaultElevation = 24.0;
 
   @override
   Widget build(BuildContext context) {
     final DialogTheme dialogTheme = DialogTheme.of(context);
     return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets +
-          const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+      padding: MediaQuery.of(context).viewInsets + const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
       duration: insetAnimationDuration!,
       curve: insetAnimationCurve!,
       child: MediaQuery.removeViewInsets(
@@ -636,11 +614,8 @@ class CustomDialog extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(minWidth: minWidth ?? 280.0),
             child: Material(
-              color: backgroundColor ??
-                  dialogTheme.backgroundColor ??
-                  Theme.of(context).dialogBackgroundColor,
-              elevation:
-                  elevation ?? dialogTheme.elevation ?? _defaultElevation,
+              color: backgroundColor ?? dialogTheme.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
+              elevation: elevation ?? dialogTheme.elevation ?? _defaultElevation,
               shape: shape ?? dialogTheme.shape ?? _defaultDialogShape,
               type: MaterialType.card,
               child: child,
